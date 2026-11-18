@@ -1,0 +1,5 @@
+#Wed Nov 18 11:05:18 UTC 2026
+Address=/IF_2000_01_REST_To_RFC_PepsiDemo_Sync
+RFCDest=DEV_RFC_S4
+SAP_Receiver=DEVS4
+SAP_Sender=DEV Application

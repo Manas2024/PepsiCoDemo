@@ -1,0 +1,6 @@
+{
+  "Address": "/IF_2000_01_REST_To_RFC_PepsiDemo_Sync",
+  "RFCDest": "QA_RFC_S4",
+  "SAP_Receiver": "QAS4",
+  "SAP_Sender": "QA Application"
+}

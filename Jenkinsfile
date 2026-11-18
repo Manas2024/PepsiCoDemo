@@ -17,7 +17,7 @@
             steps {
                 echo 'Fetching Integration Suite repository...'
                 checkout scm
-                bat '"C:\\Users\\manaskumar.pradhan\\AppData\\Local\\Programs\\Git\\cmd\\git.exe" log -1 --oneline'
+               bat '"C:\\Users\\manaskumar.pradhan\\AppData\\Local\\Programs\\Git\\cmd\\git.exe" log -1 --oneline'
             }
         }
 
@@ -1289,14 +1289,11 @@ New-Item -ItemType Directory -Force -Path $tempDir | Out-Null
                                 throw "Deployment trigger did not return HTTP 202 for $id."
                             }
 
-                            # Extract TaskId from JSON, XML, or plain UUID response
+                            # Extract TaskId from JSON or XML response.
                             $taskId = $null
 
-                            $responseText = ([string]$response.Content).Trim()
-
-                            # 1. Try JSON
                             try {
-                                $json = $responseText | ConvertFrom-Json -ErrorAction Stop
+                                $json = $responseText | ConvertFrom-Json
 
                                 if ($json.d.TaskId) {
                                     $taskId = [string]$json.d.TaskId
@@ -1306,25 +1303,17 @@ New-Item -ItemType Directory -Force -Path $tempDir | Out-Null
                                 }
                             }
                             catch {
-                                # Continue with XML or plain UUID parsing
+                                # Response may be XML rather than JSON.
                             }
 
-                            # 2. Try XML
                             if ([string]::IsNullOrWhiteSpace($taskId)) {
                                 if ($responseText -match '(?i)<(?:[^:>]+:)?TaskId[^>]*>([^<]+)</(?:[^:>]+:)?TaskId>') {
-                                    $taskId = $Matches[1].Trim()
-                                }
-                            }
-
-                            # 3. Try plain UUID response
-                            if ([string]::IsNullOrWhiteSpace($taskId)) {
-                                if ($responseText -match '^[{]?[0-9a-fA-F]{8}-(?:[0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$') {
-                                    $taskId = $responseText.Trim('{}')
+                                    $taskId = $Matches[1]
                                 }
                             }
 
                             if ([string]::IsNullOrWhiteSpace($taskId)) {
-                                throw "SAP returned HTTP 202 but no recognizable TaskId for $id. Response: $responseText"
+                                throw "SAP returned no readable TaskId for $id. Inspect the deployment response."
                             }
 
                             Write-Host "DEPLOYMENT TASK CREATED: $id"

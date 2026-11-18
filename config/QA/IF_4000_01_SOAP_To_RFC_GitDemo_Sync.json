@@ -1,0 +1,6 @@
+{
+  "RFCDestination": "DEV_S4_RFC",
+  "SAP_Receiver": "S4_DEV",
+  "SAP_Sender": "DEV Sender",
+  "SOAP_Address": "/IF_4000_01_SOAP_To_RFC_GitDemo_Sync"
+}

@@ -1,4 +1,4 @@
-​pipeline {
+pipeline {
     agent any
 
     options {
@@ -17,7 +17,7 @@
             steps {
                 echo 'Fetching Integration Suite repository...'
                 checkout scm
-               bat 'git log -1 --oneline'
+                bat 'git log -1 --oneline'
             }
         }
 

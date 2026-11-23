@@ -17,7 +17,7 @@ pipeline {
             steps {
                 echo 'Fetching Integration Suite repository...'
                 checkout scm
-                bat 'git log -1 --oneline'
+                bat '"C:\\Users\\manaskumar.pradhan\\AppData\\Local\\Programs\\Git\\cmd\\git.exe" log -1 --oneline'
             }
         }
 

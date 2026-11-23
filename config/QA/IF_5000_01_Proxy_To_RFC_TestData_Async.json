@@ -1,0 +1,6 @@
+{
+  "RFCDestination": "RFC_HANA_QA",
+  "SAP_Receiver": "S4_QA",
+  "SAP_Sender": "ECC_QA",
+  "XI_Address": "/IF_5000_01_Proxy_To_RFC_TestData_Async"
+}

@@ -1,0 +1,5 @@
+#Mon Nov 23 15:03:56 UTC 2026
+RFCDestination=RFC_HANA_DEV
+SAP_Receiver=S4_DEV
+SAP_Sender=ECC_DEV
+XI_Address=/IF_5000_01_Proxy_To_RFC_TestData_Async
